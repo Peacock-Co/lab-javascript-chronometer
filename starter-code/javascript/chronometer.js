@@ -10,21 +10,31 @@ class Chronometer {
   }
 
   getMinutes() {
-    var minutes = Math.floor(this.currentTime / 60);
+    let minutes = Math.floor(this.currentTime / 60);
     return minutes;
   }
 
   getSeconds() {
-    var seconds = this.currentTime - this.minutes * 60;
+    let seconds = this.currentTime % 60;
     if (!this.currentTime) {
       return 0;
-    } else if (this.currentTime > 0) {
-      return this.currentTime++;
     }
     return seconds;
   }
-  twoDigitsNumber() {}
-  stopClick() {}
-  resetClick() {}
+
+  twoDigitsNumber(value) {
+    return ("0" + value).slice(-2);
+  }
+
+  stopClick() {
+    return clearInterval(this.intervalId);
+  }
+
+  resetClick() {
+    if (this.currentTime > 0) {
+      return (this.currentTime = 0);
+    }
+  }
+
   splitClick() {}
 }
